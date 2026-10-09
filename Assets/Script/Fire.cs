@@ -2,12 +2,16 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    [SerializeField] private int FireDuration = 100;
-    private int time = 1;
+    [SerializeField] private int FireDuration = 1;
+    private float time = 1;
     public static Fire Instance;
     void Awake()
     {
         Instance = this;
+    }
+    void Start()
+    {
+        time = Time.time + 1;
     }
 
     // Update is called once per frame
@@ -18,20 +22,22 @@ public class Fire : MonoBehaviour
             time += 1;
             FireDuration -= 1;
             
-            if(FireDuration<=100 && FireDuration>=0)
+            if(FireDuration <= 30 && FireDuration>=0)
             {
                 FireDurationNumberString.Instance.UpdateDurationUI(FireDuration);
 
             }
         }
-        if (FireDuration >= 100)
+        if (FireDuration >= 30)
             {
-                FireDuration = 100;
+                FireDuration = 30;
                 FireDurationNumberString.Instance.UpdateDurationUI(FireDuration);
             }
             else if (FireDuration <= 0)
             {
                 FireDurationNumberString.Instance.UpdateDurationUI(0);
+                GameManager.Instance.showLoseMenu();
+                
 
             }
 
@@ -43,6 +49,10 @@ public class Fire : MonoBehaviour
             FireDuration += 20;
             FireDurationNumberString.Instance.UpdateDurationUI(FireDuration);
         }
+    }
+    public void restartFire()
+    {
+        FireDuration = 30;
     }
 
 }
