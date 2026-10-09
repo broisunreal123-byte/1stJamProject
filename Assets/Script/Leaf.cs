@@ -13,6 +13,10 @@ public class Leaf : MonoBehaviour
         {
             isFollowing = true;
         }
+        if (collision.CompareTag("Fireplace"))
+        {
+            Destroy(gameObject);
+        }
     }
     void Update()
     {
