@@ -6,6 +6,7 @@ public class Fire : MonoBehaviour
     private int FireDuration;
     private float time = 1;
     public static Fire Instance;
+    private int zombieDmg = 5;
     void Awake()
     {
         Instance = this;
@@ -51,6 +52,16 @@ public class Fire : MonoBehaviour
             FireDuration += 20;
             FireDurationNumberString.Instance.UpdateFireDurationUI(FireDuration);
         }
+        if (collision.CompareTag("Zombie"))
+        {
+            consumeFire(zombieDmg);
+            Destroy(collision.gameObject);
+            FireDurationNumberString.Instance.UpdateFireDurationUI(FireDuration);
+        }
+    }
+    public void consumeFire(int dmg)
+    {
+        FireDuration -= dmg;
     }
 
 
