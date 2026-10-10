@@ -2330,6 +2330,7 @@ MonoBehaviour:
   StartMenuUI: {fileID: 594960247}
   LoseMenuUI: {fileID: 1479539661}
   WinMenuUI: {fileID: 820966237}
+  TimeLimit: {fileID: 1951609491}
 --- !u!4 &1454162692
 Transform:
   m_ObjectHideFlags: 0
