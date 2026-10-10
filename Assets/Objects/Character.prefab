@@ -567,6 +567,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character
   speed: 3.5
+  bulletPrefab: {fileID: 7961453879706309688, guid: b6ba03a18f26e764aace747532775972, type: 3}
+  firepoint: {fileID: 9161810103706296642}
 --- !u!61 &2129704477265497136
 BoxCollider2D:
   m_ObjectHideFlags: 0

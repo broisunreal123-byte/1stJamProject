@@ -256,11 +256,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 67465021}
   m_CullTransparentMesh: 1
---- !u!4 &134262359 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9161810103706296642, guid: 69d91ece52cadb147a84bca44ced61e0, type: 3}
-  m_PrefabInstance: {fileID: 1727569789294456914}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &136119650
 GameObject:
   m_ObjectHideFlags: 0
@@ -3069,14 +3064,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9016763365679865523, guid: 69d91ece52cadb147a84bca44ced61e0, type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 7961453879706309688, guid: b6ba03a18f26e764aace747532775972, type: 3}
-    - target: {fileID: 9016763365679865523, guid: 69d91ece52cadb147a84bca44ced61e0, type: 3}
-      propertyPath: firepoint
-      value: 
-      objectReference: {fileID: 134262359}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
