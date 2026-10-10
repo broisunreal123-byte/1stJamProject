@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    [SerializeField] private int FireDuration = 1;
+    private int realFireDuration = 30;
+    private int FireDuration;
     private float time = 1;
     public static Fire Instance;
     void Awake()
@@ -11,6 +12,7 @@ public class Fire : MonoBehaviour
     }
     void Start()
     {
+        FireDuration = realFireDuration;
         time = Time.time + 1;
     }
 
@@ -21,25 +23,25 @@ public class Fire : MonoBehaviour
         {
             time += 1;
             FireDuration -= 1;
-            
-            if(FireDuration <= 30 && FireDuration>=0)
+
+            if (FireDuration <= realFireDuration && FireDuration >= 0)
             {
-                FireDurationNumberString.Instance.UpdateDurationUI(FireDuration);
+                FireDurationNumberString.Instance.UpdateFireDurationUI(FireDuration);
 
             }
         }
-        if (FireDuration >= 30)
-            {
-                FireDuration = 30;
-                FireDurationNumberString.Instance.UpdateDurationUI(FireDuration);
-            }
-            else if (FireDuration <= 0)
-            {
-                FireDurationNumberString.Instance.UpdateDurationUI(0);
-                GameManager.Instance.showLoseMenu();
-                
+        if (FireDuration >= realFireDuration)
+        {
+            FireDuration = realFireDuration;
+            FireDurationNumberString.Instance.UpdateFireDurationUI(realFireDuration);
+        }
+        else if (FireDuration <= 0)
+        {
+            FireDurationNumberString.Instance.UpdateFireDurationUI(0);
+            GameManager.Instance.showLoseMenu();
 
-            }
+
+        }
 
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -47,12 +49,9 @@ public class Fire : MonoBehaviour
         if (collision.CompareTag("Leaf"))
         {
             FireDuration += 20;
-            FireDurationNumberString.Instance.UpdateDurationUI(FireDuration);
+            FireDurationNumberString.Instance.UpdateFireDurationUI(FireDuration);
         }
     }
-    public void restartFire()
-    {
-        FireDuration = 30;
-    }
+
 
 }

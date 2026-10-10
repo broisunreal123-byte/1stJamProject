@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         LoseMenuUI.SetActive(false);
         WinMenuUI.SetActive(false);
-        Fire.Instance.restartFire();
     }
     public void showLoseMenu()
     {
