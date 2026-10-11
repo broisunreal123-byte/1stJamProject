@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    private int realFireDuration = 30;
+    private int realFireDuration = 40;
     private int FireDuration;
     private float time = 1;
     public static Fire Instance;
@@ -49,7 +49,8 @@ public class Fire : MonoBehaviour
     {
         if (collision.CompareTag("Leaf"))
         {
-            FireDuration += 20;
+            TimeDuration time = collision.GetComponent<TimeDuration>();
+            FireDuration += 15;
             FireDurationNumberString.Instance.UpdateFireDurationUI(FireDuration);
         }
         if (collision.CompareTag("Zombie"))

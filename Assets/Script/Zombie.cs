@@ -4,7 +4,7 @@ public class Zombie : MonoBehaviour
 {
     private Transform target;
     private float hp = 100;
-    private float speed = 2f;
+    private float speed = 3f;
     void Start()
     {
         target = GameObject.FindWithTag("Fireplace").transform;

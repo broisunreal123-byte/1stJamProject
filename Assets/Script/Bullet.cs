@@ -4,9 +4,9 @@ using UnityEngine.UIElements;
 
 public class Bullet : MonoBehaviour
 {
-    private float dmg = 25f;
+    private float dmg = 10f;
     private float direction = 1;
-    private float speed = 5f;
+    private float speed = 10f;
     [SerializeField] private Rigidbody2D rb;
     
     void Update()

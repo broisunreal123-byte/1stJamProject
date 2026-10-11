@@ -8,6 +8,7 @@ TagManager:
   - Fireplace
   - Leaf
   - Zombie
+  - Timeduration
   layers:
   - Default
   - TransparentFX

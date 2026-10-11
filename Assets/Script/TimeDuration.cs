@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TimeDuration : MonoBehaviour
 {
-    private int realTimeDuration = 10;
+    private int realTimeDuration = 100;
     private int timeDuration;
     private float time = 0f;
     void Awake()
