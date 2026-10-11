@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
-    [SerializeField] private Transform target;
+    private Transform target;
     private float hp = 100;
     private float speed = 2f;
-   
+    void Start()
+    {
+        target = GameObject.FindWithTag("Fireplace").transform;
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -13,6 +18,10 @@ public class Zombie : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
+        }
+        if (target == null)
+        {
+            return;
         }
     }
     
