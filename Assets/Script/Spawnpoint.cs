@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 
 public class Spawnpoint : MonoBehaviour
@@ -19,6 +20,11 @@ public class Spawnpoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TimeDuration time = GetComponent<TimeDuration>();
+        if (time.RemainingTime <= 50)
+        {
+            
+        }
         
         
     }
