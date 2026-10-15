@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using Unity.VisualScripting;
 
 
 public class Spawnpoint : MonoBehaviour
@@ -9,25 +10,37 @@ public class Spawnpoint : MonoBehaviour
     [SerializeField] private List<Transform> spawnpointZombie;
     [SerializeField] private GameObject leaf;
     [SerializeField] private GameObject zombie;
-    [SerializeField] private float zombieSpawnTime = 3f;
-    [SerializeField] private float leafSpawnTime = 10f;
+    [SerializeField] private float zombieSpawnTime;
+    [SerializeField] private float leafSpawnTime;
+    [SerializeField] private TimeDuration time;
     void Start()
     {
-        InvokeRepeating("spawnZombie", 1f, zombieSpawnTime);
-        InvokeRepeating("spawnLeaf", 3f, leafSpawnTime);
+        StartCoroutine(SpawnStuff());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator SpawnStuff()
     {
-        TimeDuration time = GetComponent<TimeDuration>();
-        if (time.RemainingTime <= 50)
+        while (time.RemainingTime > 0)
         {
-            
+            float spawntime = zombieSpawnTime;
+            if (time.RemainingTime <= 80)
+            {
+                spawntime = zombieSpawnTime / 3;
+                Debug.Log(spawntime);
+            }
+            else if (time.RemainingTime <= 90)
+            {
+                spawntime = zombieSpawnTime / 2;
+                Debug.Log(spawntime);
+            }
+             spawnZombie();
+            yield return new WaitForSeconds(spawntime);
         }
-        
-        
     }
+
+
+
+
     public void spawnZombie()
     {
         int index = Random.Range(0, spawnpointZombie.Count);

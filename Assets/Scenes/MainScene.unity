@@ -1626,8 +1626,9 @@ MonoBehaviour:
   - {fileID: 1651594189}
   leaf: {fileID: 6278873689475070285, guid: c03325aa484af2a488fe1bb8ae6500b0, type: 3}
   zombie: {fileID: 8439523101605392204, guid: 303f8f1151bcf454ab53a69316a79e68, type: 3}
-  zombieSpawnTime: 2
+  zombieSpawnTime: 3
   leafSpawnTime: 10
+  time: {fileID: 736107095}
 --- !u!1 &1109780213
 GameObject:
   m_ObjectHideFlags: 0
