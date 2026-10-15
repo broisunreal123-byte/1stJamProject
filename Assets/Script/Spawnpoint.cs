@@ -23,12 +23,12 @@ public class Spawnpoint : MonoBehaviour
         while (time.RemainingTime > 0)
         {
             float spawntime = zombieSpawnTime;
-            if (time.RemainingTime <= 80)
+            if (time.RemainingTime <= 20)
             {
-                spawntime = zombieSpawnTime / 3;
+                spawntime = zombieSpawnTime / 4;
                 Debug.Log(spawntime);
             }
-            else if (time.RemainingTime <= 90)
+            else if (time.RemainingTime <= 500)
             {
                 spawntime = zombieSpawnTime / 2;
                 Debug.Log(spawntime);
