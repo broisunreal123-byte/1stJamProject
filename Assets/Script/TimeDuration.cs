@@ -29,5 +29,6 @@ public class TimeDuration : MonoBehaviour
             }
         }
     }
+     public int RemainingTime { get; private set; }
     
 }

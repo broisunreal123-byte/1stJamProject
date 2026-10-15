@@ -3,7 +3,7 @@ using UnityEngine;
 public class Zombie : MonoBehaviour
 {
     private Transform target;
-    private float hp = 100;
+    private float hp = 50f;
     private float speed = 3f;
     void Start()
     {

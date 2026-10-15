@@ -8,7 +8,7 @@ public class Spawnpoint : MonoBehaviour
     [SerializeField] private List<Transform> spawnpointZombie;
     [SerializeField] private GameObject leaf;
     [SerializeField] private GameObject zombie;
-    [SerializeField] private float zombieSpawnTime = 1.5f;
+    [SerializeField] private float zombieSpawnTime = 3f;
     [SerializeField] private float leafSpawnTime = 10f;
     void Start()
     {
@@ -19,6 +19,8 @@ public class Spawnpoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        
     }
     public void spawnZombie()
     {
