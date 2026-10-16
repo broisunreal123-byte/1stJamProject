@@ -15,27 +15,37 @@ public class Spawnpoint : MonoBehaviour
     [SerializeField] private TimeDuration time;
     void Start()
     {
-        StartCoroutine(SpawnStuff());
+        StartCoroutine(ZombieLoop());
+        StartCoroutine(LeafLoop());
     }
 
-    IEnumerator SpawnStuff()
+    IEnumerator ZombieLoop()
     {
         while (time.RemainingTime > 0)
         {
             float spawntime = zombieSpawnTime;
-            if (time.RemainingTime <= 20)
+            if (time.RemainingTime <= 30)
             {
                 spawntime = zombieSpawnTime / 4;
                 Debug.Log(spawntime);
             }
-            else if (time.RemainingTime <= 500)
+            else if (time.RemainingTime <= 75)
             {
                 spawntime = zombieSpawnTime / 2;
                 Debug.Log(spawntime);
             }
-             spawnZombie();
+            spawnZombie();
             yield return new WaitForSeconds(spawntime);
         }
+    }
+     IEnumerator LeafLoop()
+    {
+        while (time.RemainingTime > 0)
+        {
+            yield return new WaitForSeconds(leafSpawnTime);
+            spawnLeaf();
+        }
+        
     }
 
 
