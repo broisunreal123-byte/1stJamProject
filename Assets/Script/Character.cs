@@ -5,26 +5,31 @@ public class Character : MonoBehaviour
 {
 
     [SerializeField] private float speed = 3.5f;
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform firepoint;
-    
+    [SerializeField] private Animator animate;
+
+
     private float facingDirection = 1f;
 
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        transform.Translate(Vector3.right * x * speed * Time.deltaTime);
-        if (x != 0) facingDirection = x;
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            shoot();
-        }
+        handleMovement();
+
     }
-    private void shoot()
+    private void handleMovement()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firepoint.position, Quaternion.identity);
-        bullet.GetComponent<Bullet>().SetDirection(facingDirection);
-        Destroy(bullet, 3f);
+        float input = Input.GetAxisRaw("Horizontal");
+        transform.Translate(Vector3.right * input * speed * Time.deltaTime);
+        if (input != 0)
+        {
+            animate.SetBool("isRunning", true);
+            facingDirection = input;
+        } else
+        {
+            animate.SetBool("isRunning", false);
+        }
+
+
     }
+
 }
