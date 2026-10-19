@@ -1,5 +1,6 @@
 using Unity.Mathematics;
 using UnityEngine;
+using System.Collections;
 
 public class Hero : Character
 {
@@ -8,8 +9,8 @@ public class Hero : Character
     [SerializeField] private Animator animate;
     [SerializeField] private GameObject hitbox;
     float timeAttack = 1.5f;
-    
-    
+
+
     float attackCooldown = 0f;
 
 
@@ -27,9 +28,7 @@ public class Hero : Character
         {
             attackCooldown = Time.time + timeAttack;
             Attack();
-        } else if (Time.time >= attackCooldown)
-        {
-            hitbox.SetActive(false);
+
         }
 
     }
@@ -47,13 +46,23 @@ public class Hero : Character
         {
             animate.SetBool("isRunning", false);
         }
+
     }
     private void Attack()
     {
+        float timing = attackCooldown;
         Debug.Log("Atacking");
         hitbox.SetActive(true);
         animate.SetTrigger("Attack");
-
+        StartCoroutine(HitboxRoutine());
+        
+    }
+    private IEnumerator HitboxRoutine()
+    {
+        hitbox.SetActive(true);
+        yield return new WaitForSeconds(timeAttack);
+        hitbox.SetActive(false);
+        Debug.Log("Success");
     }
 
 }
