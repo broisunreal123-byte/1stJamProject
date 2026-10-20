@@ -6,28 +6,17 @@ using NUnit.Framework;
 
 public class Hero : Character
 {
-
-    [SerializeField] private float speed = 3.5f;
-    [SerializeField] private Animator animate;
-    [SerializeField] private GameObject hitbox;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] Transform groundCheck;
-    private Rigidbody2D rb;
+    [SerializeField] private Transform groundCheck;
+
     private float checkRadius = 0.1f;
-
-    private float timeAttack = 0.75f;
-    private float attackCooldown = 0f;
-    private float jumpForce = 8f;
-    private bool Attacking = false;
-    private bool isGrounded;
-
-
-
     private float facingDirection = 1f;
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        hitbox.SetActive(false);
+        hp = 100f;
+        dmg = 50f;
+        timeAttack = 1f;
+        
     }
 
     // Update is called once per frame
@@ -86,26 +75,7 @@ public class Hero : Character
 
     }
 
-    private void Attack()
-    {
-        float timing = attackCooldown;
-        if (isGrounded)
-        {
-            Debug.Log("Atacking");
-            hitbox.SetActive(true);
-            animate.SetTrigger("Attack");
-            StartCoroutine(HitboxRoutine());
-        }
-
-    }
-    private IEnumerator HitboxRoutine()
-    {
-        hitbox.SetActive(true);
-        Attacking = true;
-        yield return new WaitForSeconds(timeAttack);
-        hitbox.SetActive(false);
-        Attacking = false;
-    }
+   
 
     void OnDrawGizmosSelected()
     {

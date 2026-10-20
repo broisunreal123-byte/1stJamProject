@@ -1,13 +1,14 @@
 using UnityEngine;
 
-public class Zombie : MonoBehaviour
+public class Zombie : Character
 {
     private Transform target;
-    private float hp = 50f;
-    private float speed = 3f;
+    
     void Start()
     {
-        target = GameObject.FindWithTag("Fireplace").transform;
+        speed = 3f;
+        hp = 50f;
+        target = GameObject.FindWithTag("Player").transform;
         
     }
 
@@ -25,8 +26,5 @@ public class Zombie : MonoBehaviour
         }
     }
     
-    public void takeDamage(float dmg)
-    {
-        hp -= dmg;
-    }
+    
 }
