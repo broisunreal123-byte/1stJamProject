@@ -13,11 +13,11 @@ public class Hero : Character
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] Transform groundCheck;
     private Rigidbody2D rb;
-    private float checkRadius = 0.5f;
+    private float checkRadius = 0.1f;
 
     private float timeAttack = 0.75f;
     private float attackCooldown = 0f;
-    private float jumpForce = 5f;
+    private float jumpForce = 8f;
     private bool Attacking = false;
     private bool isGrounded;
 
@@ -35,10 +35,13 @@ public class Hero : Character
     {
         handleMovement();
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+        animate.SetBool("isJumping", !isGrounded);
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             jump();
+
         }
+
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >= attackCooldown)
         {
@@ -46,9 +49,11 @@ public class Hero : Character
             Attack();
 
         }
-        Debug.Log(isGrounded);
+
+
 
     }
+    #region movement
     private void handleMovement()
     {
         float input = Input.GetAxisRaw("Horizontal");
@@ -73,18 +78,24 @@ public class Hero : Character
 
 
     }
+    #endregion
     private void jump()
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x,jumpForce);
-        animate.SetBool("isJumping",true);
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
     }
+
     private void Attack()
     {
         float timing = attackCooldown;
-        Debug.Log("Atacking");
-        hitbox.SetActive(true);
-        animate.SetTrigger("Attack");
-        StartCoroutine(HitboxRoutine());
+        if (isGrounded)
+        {
+            Debug.Log("Atacking");
+            hitbox.SetActive(true);
+            animate.SetTrigger("Attack");
+            StartCoroutine(HitboxRoutine());
+        }
 
     }
     private IEnumerator HitboxRoutine()
@@ -94,8 +105,8 @@ public class Hero : Character
         yield return new WaitForSeconds(timeAttack);
         hitbox.SetActive(false);
         Attacking = false;
-        Debug.Log("Success");
     }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
