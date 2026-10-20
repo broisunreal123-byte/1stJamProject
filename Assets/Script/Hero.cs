@@ -42,7 +42,6 @@ public class Hero : Character
 
 
     }
-    #region movement
     private void handleMovement()
     {
         float input = Input.GetAxisRaw("Horizontal");
@@ -67,7 +66,6 @@ public class Hero : Character
 
 
     }
-    #endregion
     private void jump()
     {
 
