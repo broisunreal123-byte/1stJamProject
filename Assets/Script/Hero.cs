@@ -1,6 +1,8 @@
 using Unity.Mathematics;
 using UnityEngine;
 using System.Collections;
+using UnityEditor.Callbacks;
+using NUnit.Framework;
 
 public class Hero : Character
 {
@@ -8,14 +10,23 @@ public class Hero : Character
     [SerializeField] private float speed = 3.5f;
     [SerializeField] private Animator animate;
     [SerializeField] private GameObject hitbox;
-    float timeAttack = 0.75f;
-    float attackCooldown = 0f;
-    bool Attacking = false;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] Transform groundCheck;
+    private Rigidbody2D rb;
+    private float checkRadius = 0.5f;
+
+    private float timeAttack = 0.75f;
+    private float attackCooldown = 0f;
+    private float jumpForce = 5f;
+    private bool Attacking = false;
+    private bool isGrounded;
+
 
 
     private float facingDirection = 1f;
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         hitbox.SetActive(false);
     }
 
@@ -23,12 +34,19 @@ public class Hero : Character
     void Update()
     {
         handleMovement();
-        if (Input.GetKeyDown("space") && Time.time >= attackCooldown)
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            jump();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >= attackCooldown)
         {
             attackCooldown = Time.time + timeAttack;
             Attack();
 
         }
+        Debug.Log(isGrounded);
 
     }
     private void handleMovement()
@@ -52,8 +70,13 @@ public class Hero : Character
             }
             transform.Translate(Vector3.right * input * speed * Time.deltaTime);
         }
-        
 
+
+    }
+    private void jump()
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x,jumpForce);
+        animate.SetBool("isJumping",true);
     }
     private void Attack()
     {
@@ -72,6 +95,11 @@ public class Hero : Character
         hitbox.SetActive(false);
         Attacking = false;
         Debug.Log("Success");
+    }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
     }
 
 }
