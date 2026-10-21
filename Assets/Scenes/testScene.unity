@@ -486,10 +486,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 340455926436528055, guid: 9100632d7ec2de64dae0592a218ae45a, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 582894997003837968, guid: 9100632d7ec2de64dae0592a218ae45a, type: 3}
       propertyPath: m_Name
       value: Character 1
@@ -533,10 +529,6 @@ PrefabInstance:
     - target: {fileID: 3218246937780162918, guid: 9100632d7ec2de64dae0592a218ae45a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8773827947894638787, guid: 9100632d7ec2de64dae0592a218ae45a, type: 3}
-      propertyPath: m_TagString
-      value: heroAttack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -660,7 +652,7 @@ GameObject:
   - component: {fileID: 2761387626956790154}
   - component: {fileID: 1667914492569099339}
   m_Layer: 7
-  m_Name: AttackHitbox
+  m_Name: zombieAttackHitbox
   m_TagString: zombieAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -818,7 +810,7 @@ GameObject:
   - component: {fileID: 7943108966574683585}
   - component: {fileID: 3945643145800867892}
   - component: {fileID: 2086574366743925286}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: zombie
   m_TagString: Zombie
   m_Icon: {fileID: 0}

@@ -13,6 +13,7 @@ public class Zombie : Character
         hitbox.SetActive(false);
         speed = 3f;
         hp = 50f;
+        timeAttack = 1.5f;
         target = GameObject.FindWithTag("Player").transform;
 
     }

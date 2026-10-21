@@ -38,9 +38,11 @@ public abstract class Character : MonoBehaviour
     protected IEnumerator HitboxRoutine()
     {
         hitbox.SetActive(true);
+        Debug.Log("yes");
         Attacking = true;
         yield return new WaitForSeconds(timeAttack);
         hitbox.SetActive(false);
         Attacking = false;
+        Debug.Log("No");
     }
 }
