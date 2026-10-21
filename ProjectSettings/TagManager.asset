@@ -9,6 +9,8 @@ TagManager:
   - Leaf
   - Zombie
   - Timeduration
+  - zombieAttack
+  - heroAttack
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7014112791827922443}
   m_Layer: 7
   m_Name: GroundCheck
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,9 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db87a2d5cd7897f4cba2f84cd479a101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character
-  hp: 0
-  dmg: 0
-  speed: 3.5
   animate: {fileID: 5831301584910890980}
   hitbox: {fileID: 8773827947894638787}
   groundLayer:
@@ -257,7 +254,7 @@ GameObject:
   - component: {fileID: 8144991960708271003}
   m_Layer: 7
   m_Name: AttackHitbox
-  m_TagString: Untagged
+  m_TagString: heroAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -319,7 +316,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

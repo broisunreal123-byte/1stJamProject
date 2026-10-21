@@ -1,27 +1,31 @@
 using UnityEngine;
 using System.Collections;
 
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
-     protected float hp;
-     protected float dmg;
-     protected float speed = 3.5f;
-     protected Animator animate;
-     protected GameObject hitbox;
-    
+    protected float hp;
+    protected float dmg;
+    protected float speed = 3.5f;
+    [SerializeField] protected Animator animate;
+    [SerializeField] protected GameObject hitbox;
+
     protected Rigidbody2D rb;
-    
+
 
     protected float timeAttack;
     protected float attackCooldown = 0f;
     protected float jumpForce = 8f;
+    protected float facingDirection = 1f;
     protected bool Attacking = false;
     protected bool isGrounded;
+    protected abstract void handleMovement();
+
+
     void Start()
     {
-        
+
         rb = GetComponent<Rigidbody2D>();
-        hitbox.SetActive(false);
+
     }
 
 
@@ -30,18 +34,7 @@ public class Character : MonoBehaviour
     {
         hp -= dmg;
     }
-    protected void Attack()
-    {
-        float timing = attackCooldown;
-        if (isGrounded)
-        {
-            Debug.Log("Atacking");
-            hitbox.SetActive(true);
-            animate.SetTrigger("Attack");
-            StartCoroutine(HitboxRoutine());
-        }
-
-    }
+    protected abstract void Attack();
     protected IEnumerator HitboxRoutine()
     {
         hitbox.SetActive(true);

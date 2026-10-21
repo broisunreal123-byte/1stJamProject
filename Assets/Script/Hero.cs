@@ -1,8 +1,9 @@
-using Unity.Mathematics;
+
+using Unity.VisualScripting;
 using UnityEngine;
-using System.Collections;
-using UnityEditor.Callbacks;
-using NUnit.Framework;
+
+
+
 
 public class Hero : Character
 {
@@ -10,13 +11,14 @@ public class Hero : Character
     [SerializeField] private Transform groundCheck;
 
     private float checkRadius = 0.1f;
-    private float facingDirection = 1f;
     void Start()
     {
+        hitbox.SetActive(false);
+        rb = GetComponent<Rigidbody2D>();
         hp = 100f;
         dmg = 50f;
         timeAttack = 1f;
-        
+
     }
 
     // Update is called once per frame
@@ -42,7 +44,7 @@ public class Hero : Character
 
 
     }
-    private void handleMovement()
+    protected override void handleMovement()
     {
         float input = Input.GetAxisRaw("Horizontal");
         if (Attacking)
@@ -72,8 +74,20 @@ public class Hero : Character
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
     }
+    protected override void Attack()
+    {
+        float timing = attackCooldown;
+        if (isGrounded)
+        {
+            Debug.Log("Atacking");
+            hitbox.SetActive(true);
+            animate.SetTrigger("Attack");
+            StartCoroutine(HitboxRoutine());
+        }
 
-   
+    }
+
+
 
     void OnDrawGizmosSelected()
     {
