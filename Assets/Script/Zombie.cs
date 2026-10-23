@@ -7,6 +7,7 @@ public class Zombie : Character
 {
     private Transform target;
     private float distance;
+    private GameObject heroObject;
 
     void Start()
     {
@@ -14,36 +15,45 @@ public class Zombie : Character
         speed = 3f;
         hp = 50f;
         timeAttack = 1.5f;
+        attackCooldown = 6f;
         target = GameObject.FindWithTag("Player").transform;
+        heroObject = GameObject.FindWithTag("Player");
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (heroObject == null)
+        {
+            animate.SetBool("isRunning",false);
+            return;
+        }
+
+
         distance = Vector2.Distance(transform.position, target.position);
         handleMovement();
 
         if (hp <= 0)
         {
             Destroy(gameObject);
+            Debug.Log("Dead");
         }
-        if (target == null)
+        
+
+        if (Time.time >= hitboxAppearance && distance <= 1.5f)
         {
-            return;
-        }
-        if (Time.time >= attackCooldown && distance <= 1.5f)
-        {
-            attackCooldown = Time.time + timeAttack;
+            hitboxAppearance = Time.time + timeAttack;
             Attack();
 
         }
+
     }
     protected override void handleMovement()
     {
         float input = Mathf.Sign(target.position.x - transform.position.x);
         float inputspeed = speed;
-
+        
 
         if (Attacking)
         {
@@ -62,13 +72,20 @@ public class Zombie : Character
                 animate.SetBool("isRunning", false);
             }
             inputspeed = speed;
-            transform.position = Vector2.MoveTowards(transform.position, target.position, inputspeed * Time.deltaTime);
+            if (target == null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target.position, inputspeed * Time.deltaTime);
+            }
         }
     }
     protected override void Attack()
     {
-        float timing = attackCooldown;
-        Debug.Log("Atacking");
+
+        float timing = hitboxAppearance;
         hitbox.SetActive(true);
         animate.SetTrigger("Attack");
         StartCoroutine(HitboxRoutine());

@@ -13,7 +13,8 @@ public abstract class Character : MonoBehaviour
 
 
     protected float timeAttack;
-    protected float attackCooldown = 0f;
+    protected float hitboxAppearance = 0f;
+    protected float attackCooldown;
     protected float jumpForce = 8f;
     protected float facingDirection = 1f;
     protected bool Attacking = false;
@@ -25,12 +26,14 @@ public abstract class Character : MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody2D>();
-
+    }
+    protected void onDeath()
+    {
+        
     }
 
 
-
-    public void TakeDamage()
+    public void TakeDamage(float dmg)
     {
         hp -= dmg;
     }
@@ -38,11 +41,9 @@ public abstract class Character : MonoBehaviour
     protected IEnumerator HitboxRoutine()
     {
         hitbox.SetActive(true);
-        Debug.Log("yes");
         Attacking = true;
-        yield return new WaitForSeconds(timeAttack);
+        yield return new WaitForSeconds(0.2f);
         hitbox.SetActive(false);
         Attacking = false;
-        Debug.Log("No");
     }
 }

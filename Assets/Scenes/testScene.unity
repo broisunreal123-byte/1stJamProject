@@ -649,27 +649,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3786397331050475940}
-  - component: {fileID: 2761387626956790154}
   - component: {fileID: 1667914492569099339}
-  m_Layer: 7
+  - component: {fileID: 3786397331050475941}
+  m_Layer: 9
   m_Name: zombieAttackHitbox
   m_TagString: zombieAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2761387626956790154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2301245283021152019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504b28db05cc2e2449bb18acb645efc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!50 &3294974441977839024
 Rigidbody2D:
   serializedVersion: 5
@@ -712,6 +700,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5369644142647527094}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3786397331050475941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2301245283021152019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57b8cf9f09d3e24f89f41b02d360d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieAttack
+  dmg: 100
 --- !u!95 &3945643145800867892
 Animator:
   serializedVersion: 7

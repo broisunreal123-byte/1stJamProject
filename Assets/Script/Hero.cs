@@ -1,5 +1,4 @@
 
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -18,6 +17,8 @@ public class Hero : Character
         hp = 100f;
         dmg = 50f;
         timeAttack = 1f;
+        attackCooldown = 3f;
+
 
     }
 
@@ -34,11 +35,15 @@ public class Hero : Character
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >= attackCooldown)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >= hitboxAppearance)
         {
-            attackCooldown = Time.time + timeAttack;
+            hitboxAppearance = Time.time + timeAttack;
             Attack();
 
+        }
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
         }
 
 
@@ -76,7 +81,7 @@ public class Hero : Character
     }
     protected override void Attack()
     {
-        float timing = attackCooldown;
+        float timing = hitboxAppearance;
         if (isGrounded)
         {
             Debug.Log("Atacking");
