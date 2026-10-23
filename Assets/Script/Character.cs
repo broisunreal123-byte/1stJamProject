@@ -42,7 +42,7 @@ public abstract class Character : MonoBehaviour
     {
         hitbox.SetActive(true);
         Attacking = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.6f);
         hitbox.SetActive(false);
         Attacking = false;
     }

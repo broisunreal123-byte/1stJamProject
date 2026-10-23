@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public class ZombieAttack : MonoBehaviour
+public class ZombieAttack :CharacterAttack
 {
-   [SerializeField] private float dmg;
+    void Start()
+    {
+        dmg = 10f;
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

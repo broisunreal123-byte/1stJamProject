@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using System.Collections;
 
 
 
@@ -43,7 +44,7 @@ public class Hero : Character
         }
         if (hp <= 0)
         {
-            Destroy(gameObject);
+            playDeath();
         }
 
 
@@ -91,13 +92,23 @@ public class Hero : Character
         }
 
     }
-
-
+    public void playDeath()
+    {
+        StartCoroutine(PlayDeathAnimation());
+        transform.Translate(Vector3.right * 0 * speed * Time.deltaTime);
+        animate.SetBool("isJumping", false);
+    }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+    }
+    public IEnumerator PlayDeathAnimation()
+    {
+        animate.SetTrigger("Death");
+        yield return new WaitForSeconds(3f);
+        GameManager.Instance.showLoseMenu();
     }
 
 }

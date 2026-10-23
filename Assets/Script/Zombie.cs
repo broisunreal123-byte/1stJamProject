@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using System.Collections;
 
 
 
@@ -28,16 +29,18 @@ public class Zombie : Character
         {
             animate.SetBool("isRunning",false);
             return;
+        } else
+        {
+            distance = Vector2.Distance(transform.position, target.position);
+            handleMovement();
         }
 
 
-        distance = Vector2.Distance(transform.position, target.position);
-        handleMovement();
+        
 
         if (hp <= 0)
         {
-            Destroy(gameObject);
-            Debug.Log("Dead");
+            PlayDeath();
         }
         
 
@@ -90,6 +93,18 @@ public class Zombie : Character
         animate.SetTrigger("Attack");
         StartCoroutine(HitboxRoutine());
     }
+    private void PlayDeath()
+    {
+        
+        StartCoroutine(PlayDeathAnimation());
+    }
+    public IEnumerator PlayDeathAnimation()
+    {
+        animate.SetTrigger("Death");
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
+    }
+    
 
 
 }
