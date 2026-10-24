@@ -26,7 +26,13 @@ public class Hero : Character
     // Update is called once per frame
     void Update()
     {
-        handleMovement();
+         if (hp <= 0)
+        {
+            playDeath();
+        } else
+        {
+            handleMovement();
+        }
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
         animate.SetBool("isJumping", !isGrounded);
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
@@ -42,11 +48,7 @@ public class Hero : Character
             Attack();
 
         }
-        if (hp <= 0)
-        {
-            playDeath();
-        }
-
+        
 
 
     }

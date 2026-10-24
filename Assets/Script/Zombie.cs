@@ -9,6 +9,7 @@ public class Zombie : Character
     private Transform target;
     private float distance;
     private GameObject heroObject;
+    private float stopdist = 1.5f;
 
     void Start()
     {
@@ -25,22 +26,21 @@ public class Zombie : Character
     // Update is called once per frame
     void Update()
     {
-        if (heroObject == null)
+        distance = Vector2.Distance(transform.position, target.position);
+        if (distance >= stopdist && hp > 0)
         {
-            animate.SetBool("isRunning",false);
-            return;
+            handleMovement();
+            
         } else
         {
-            distance = Vector2.Distance(transform.position, target.position);
-            handleMovement();
+            animate.SetBool("isRunning", false);
         }
-
-
         
 
         if (hp <= 0)
         {
             PlayDeath();
+            
         }
         
 
@@ -97,6 +97,7 @@ public class Zombie : Character
     {
         
         StartCoroutine(PlayDeathAnimation());
+        hitbox.SetActive(false);
     }
     public IEnumerator PlayDeathAnimation()
     {
